@@ -1,5 +1,5 @@
 # sfc-gh-ryoshida-streamlit_extract_data_for_rag
-Snowflake 上で IR レポート取り込み/プレビュー用の Streamlit アプリを再現するためのファイルが入っています。
+Snowflake 上で IRファイルなどPDFからデータを抽出し、修正するためのStreamlit アプリとなります。
 
 - `streamlit_app.py`: Streamlit in Snowflakeのアプリ
 - `setup.sql`: Snowflake 上のデータベース/スキーマ/ステージ/テーブルの初期セットアップ用SQL
@@ -10,7 +10,7 @@ Snowflake 上で IR レポート取り込み/プレビュー用の Streamlit ア
 
 ## 1. 初期セットアップ
 1) Snowsight でワークシートを開き、実行ロール/ウェアハウスを選択します。
-2) `base/setup.sql` の内容を実行します。
+2) `setup.sql` の内容を実行します。
    - DB: `IRINFO_RAG`
    - スキーマ: `RAW`, `CURATED`
    - ステージ: `IRINFO_RAG.RAW.IR_STAGE`（ディレクトリリスティング有効）
@@ -19,11 +19,10 @@ Snowflake 上で IR レポート取り込み/プレビュー用の Streamlit ア
 必要に応じて、コメントアウトしている GRANT 文を環境のロール名に置換して実行してください。
 
 ## 2. SPCS での画像自動変換実施する
-このリポジトリには、SPCS 用の最小テンプレートが `spcs/` 配下にあります。
+このリポジトリには、SPCS で構築するサービスに必要なファイル `spcs/` 配下にあります。
 - 参照ファイル
-  - `spcs/README.md`: 全体像と手順
   - `spcs/setup.sql`: Compute Pool / Image Repository / Service の作成SQL（サービス名はアプリ既定と一致: `IRINFO_RAG.SIS_APP.PDF_TO_IMAGE_SVC`）
-  - `spcs/job_spec.yaml`: 汎用の SPec（自前のイメージURL/ステージに置換して利用）
+  - `Dockerfile`: SPCSにPushするDockerfile
 手順の要点（概要）
 1) Snowsight で `spcs/setup.sql` を実行
    - Compute Pool: `IRINFO_POOL`
@@ -64,7 +63,7 @@ Snowflake 上で IR レポート取り込み/プレビュー用の Streamlit ア
 
 
 ## 4. Streamlit アプリの作成
-Snowsight の Streamlit から新規アプリを作成し、`base/streamlit_app.py` の内容を貼り付けて保存します。
+Snowsight の Streamlit から新規アプリを作成し、`streamlit_app.py` の内容を貼り付けて保存します。
 
 - アプリ内の既定設定
   - ステージ: `@IRINFO_RAG.RAW.IR_STAGE`
