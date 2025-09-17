@@ -12,7 +12,9 @@ USE SCHEMA CURATED;
 
 -- 2) Create internal stage used by the app (with directory listing enabled)
 CREATE STAGE IF NOT EXISTS IRINFO_RAG.RAW.IR_STAGE
-  DIRECTORY = (ENABLE = TRUE);
+  DIRECTORY = (ENABLE = TRUE)
+  ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE')
+  ;
 
 -- 3) Optional: refresh directory listing after you upload files
 -- ALTER STAGE IRINFO_RAG.RAW.IR_STAGE REFRESH;
