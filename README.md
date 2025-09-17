@@ -30,13 +30,7 @@ Snowflake 上で IRファイルなどPDFからデータを抽出し、修正す�
    - Service: `IRINFO_RAG.SIS_APP.PDF_TO_IMAGE_SVC`（spec 内 `image:` が上記 push 済みのURLであること）
    - ステージは `@IRINFO_RAG.RAW.IR_STAGE` を `/stage` にマウント
 2) コンテナイメージを用意して Snowflake Image Repository に push
-  ローカルで `Dockerfile` を用意（例）:
-    ```Dockerfile
-    FROM alpine:3.19
-    RUN apk add --no-cache poppler-utils bash coreutils
-    WORKDIR /work
-    CMD ["/bin/sh", "-lc", "echo container ready"]
-    ```
+  ローカルで `Dockerfile` が格納されているディレクトリから以下を操作
 
   linux/amd64 イメージを作成して push:
   
