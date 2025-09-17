@@ -27,10 +27,12 @@ Snowflake 上で IRファイルなどPDFからデータを抽出し、修正す�
 1) Snowsight で `spcs/setup.sql` を実行
    - Compute Pool: `IRINFO_POOL`
    - Image Repository: `IRINFO_RAG.RAW.PDF_IMG_REPO`
+   - ここで2)の記載に沿ってDocker ImageをPushする
    - Service: `IRINFO_RAG.SIS_APP.PDF_TO_IMAGE_SVC`（spec 内 `image:` が上記 push 済みのURLであること）
    - ステージは `@IRINFO_RAG.RAW.IR_STAGE` を `/stage` にマウント
 2) コンテナイメージを用意して Snowflake Image Repository に push
-  ローカルで `Dockerfile` が格納されているディレクトリから以下を操作
+   - ローカルで `Dockerfile` が格納されているディレクトリから以下を操作
+   - ログイン時はPAT認証を推奨
 
   linux/amd64 イメージを作成して push:
   
