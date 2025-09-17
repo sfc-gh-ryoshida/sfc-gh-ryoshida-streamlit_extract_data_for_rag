@@ -16,7 +16,8 @@ CREATE IMAGE REPOSITORY IF NOT EXISTS IRINFO_RAG.RAW.PDF_IMG_REPO;
 
 -- Verify
 SHOW IMAGE REPOSITORIES LIKE 'PDF_IMG_REPO';
--- repository_urlをメモする
+-- repository_urlの.comまでを利用し、docker loginする
+-- repository_urlはPushで利用
 -- IDからDocker ImageをImage repositoryにPushする
 
 
