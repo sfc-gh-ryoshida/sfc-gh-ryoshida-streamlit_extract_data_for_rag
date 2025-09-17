@@ -252,6 +252,7 @@ else:
 
 # 3. SPCS Service controls ---------------------------------------------------
 st.header("3. Convert PDFs to Images (SPCS Service)")
+st.write("初回のサービス実行前に、サイドバーからアプリをRerunさせてください")
 
 # Helpers: robust start/stop functions for SPCS Service
 def _try_sql(stmt: str, params: Optional[list] = None) -> Optional[str]:
