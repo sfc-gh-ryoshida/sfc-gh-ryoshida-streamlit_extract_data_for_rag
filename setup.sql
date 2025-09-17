@@ -1,6 +1,9 @@
 -- Snowflake setup for IR RAG demo
 -- Run this in Snowsight/Worksheet with a role that can create DB/objects
 
+-- 0) Enable Cross-Region Function
+ALTER ACCOUNT SET CORTEX_ENABLED_CROSS_REGION = 'AWS_US';
+
 -- 1) Create database and schemas
 CREATE DATABASE IF NOT EXISTS IRINFO_RAG;
 USE DATABASE IRINFO_RAG;
